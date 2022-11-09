@@ -1,5 +1,6 @@
 
 menu(){
+    echo -e "\n";
     echo ASO 22/23 - Practica 6
     echo Daniel Menéndez Mira;
     echo -e "\n";
@@ -37,7 +38,7 @@ menu1(){
     echo -e "\n"
     echo Menú 1 - Programar recogida de prácticas
     echo -e "\n"
-    read -p "Asigantura cuyas prácticas desea recoger: " asignatura
+    read -p "Asignatura cuyas prácticas desea recoger: " asignatura
     read -p "Ruta con las cuentas de los alumnos: " rutaO
     read -p  "Ruta para almacenar prácticas: " rutaD
     echo -e "\n" 
@@ -51,7 +52,7 @@ menu2(){
     echo -e "\n"
     echo Menú 2 - Empaquetar prácticas de la asignatura
     echo -e "\n"
-    read -p "Asigantura cuyas prácticas desea empaquetar: " asignatura
+    read -p "Asignatura cuyas prácticas desea empaquetar: " asignatura
     read -p "Ruta absoluta del directorio de prácticas: " rutaAbs
     echo -e "\n" 
     #Si hay algún problema (por ejemplo, el directorio a salvar no existe), 
