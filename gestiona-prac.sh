@@ -1,5 +1,9 @@
+#!/bin/bash
+
+INFORMEPATH=./informe-prac.log
 
 menu(){
+
     echo -e "\n";
     echo ASO 22/23 - Practica 6
     echo Daniel Menéndez Mira;
@@ -13,7 +17,7 @@ menu(){
     echo    3')' Ver tamaño y fecha del ficehro de una asignatura;
     echo    4')' Finalizar programa;
     echo -e "\n";
-    read -p "Opción(hh): " option
+    read -p "Opción: " option
     
     case $option in 
         1)
@@ -34,20 +38,49 @@ menu(){
             ;;
     esac
 }
+
 menu1(){
+    existe=false
     echo -e "\n"
     echo Menú 1 - Programar recogida de prácticas
     echo -e "\n"
     read -p "Asignatura cuyas prácticas desea recoger: " asignatura
-    read -p "Ruta con las cuentas de los alumnos: " rutaO
-    read -p  "Ruta para almacenar prácticas: " rutaD
-    echo -e "\n" 
-    echo Se va a programar la recogida de las prácticas de $asignatura para \n
+    
+    while [ "$existe" = false ] 
+    do
+    	read -p "Ruta con las cuentas de los alumnos: " rutaO
+    	if [ -d $rutaO ]
+    	then
+    		echo El directorio existe
+    		existe=true
+    	else
+    		echo $(date) [Error] El directorio de origen: $1 no existe >> $INFORMEPATH
+    		echo -e "\n"
+    		echo [ERROR] El directorio de origen: $1 no existe
+    		echo Por favor, introduzca una ruta válida
+    		echo -e "\n"
+    	fi
+    done
+    
+    read -p "Ruta para almacenar prácticas: " rutaD
+    echo -e "\n"
+    echo Se va a programar la recogida de las prácticas de $asignatura para
     echo mañana a las 8:00. Origen: $rutaO   Destino: $rutaD
     echo -e "\n"
     read -p "¿Está de acuerdo? (s/n) " resp
     menu
 }
+
+comprobarRuta(){ 
+    if [ -d $1 ]
+    then
+    	echo El directorio existe
+    else
+    	echo [ERROR] El directorio de origen: $1 no existe
+    	echo Por favor, introduzca una ruta válida
+    fi
+}
+
 menu2(){
     echo -e "\n"
     echo Menú 2 - Empaquetar prácticas de la asignatura
@@ -57,7 +90,7 @@ menu2(){
     echo -e "\n" 
     #Si hay algún problema (por ejemplo, el directorio a salvar no existe), 
     #la herramienta presenta un mensaje de error en pantalla y en el fichero de incidencias, y vuelve al menú principal.
-    echo Se van a empaquetar las prácticas de la asignatura $asignatura \n
+    echo Se van a empaquetar las prácticas de la asignatura $asignatura 
     echo presentes en el directorio $rutaAbs
     echo -e "\n"
     read -p "¿Está de acuerdo? (s/n) " resp
