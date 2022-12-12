@@ -45,7 +45,7 @@ menu1(){
     echo Menú 1 - Programar recogida de prácticas
     echo -e "\n"
     read -p "Asignatura cuyas prácticas desea recoger: " asignatura
-    #compruebo que el directorio existe
+    #compruebo que el directorio de origen existe
     while [ "$existe" = false ] 
     do
     	read -p "Ruta con las cuentas de los alumnos: " rutaO
@@ -53,21 +53,43 @@ menu1(){
     	then
     		existe=true
     	else
-    		echo $(date) [Error] El directorio de origen: $rutaO no existe >> $INFORMEPATH
+    		echo $(date) "[ERROR] - Directorio_Origen ->" El directorio de origen: $rutaO no existe >> $INFORMEPATH
     		echo -e "\n"
     		echo [ERROR] El directorio de origen: $rutaO no existe
     		echo Por favor, introduzca una ruta válida
     		echo -e "\n"
     	fi
     done
-    #una vez el directorio de origen es correcto sigo ejecutando
-    read -p "Ruta para almacenar prácticas: " rutaD
+    
+    #ahora compruebo si el directorio destino existe. Si no exite, lo creo
+    res=n
+    while [ "$res" = n ]
+    	do
+    	read -p "Ruta para almacenar prácticas: " rutaD
+    	
+    	if [ ! -d $rutaD ]
+    	then 
+    		read -p "El directorio de destino no exite. ¿Desea crearlo ahora? (s/n) " res
+    	
+    		if [ "$res" = s ]
+    		then
+    		    res=s
+    		    mkdir $rutaD   	
+    		    echo El directorio de destino ha sido creado
+    		    echo $(date) "[OK] - Creado el directorio ->" $rutaD >> $INFORMEPATH
+    		else
+    		    echo Debe especificar un directorio para almacenar las prácticas
+    		fi
+    	fi
+    done
+    
+    #confirmo la informacion 
     echo -e "\n"
     echo Se va a programar la recogida de las prácticas de $asignatura para
     echo mañana a las 8:00. Origen: $rutaO   Destino: $rutaD
     echo -e "\n"
     read -p "¿Está de acuerdo? (s/n)" resp
-    
+    #MODIFICAR ESTO pra evitar valores de $resp indeseados (distintos de s/n)
     if [ "$resp" = s ]
     then
     	#añadimos una tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
@@ -76,9 +98,10 @@ menu1(){
 	
 	#REVISAR: sin permisos root no deja acceder al directorio /crontabs	
     	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root
-    	echo [OK] 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
+    	echo $(date) "[OK] - Tarea añadida a cron ->" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 
     fi
+    
     menu
 }
 
