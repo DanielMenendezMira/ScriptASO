@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 INFORMEPATH=./informe-prac.log
 
 menu(){
@@ -53,7 +54,7 @@ menu1(){
     	then
     		existe=true
     	else
-    		echo $(date) "[ERROR] - Directorio_Origen ->" El directorio de origen: $rutaO no existe >> $INFORMEPATH
+    		echo $(date) "[ERROR] - Directorio_Origen -> (gestiona-prac.sh)" El directorio de origen: $rutaO no existe >> $INFORMEPATH
     		echo -e "\n"
     		echo [ERROR] El directorio de origen: $rutaO no existe
     		echo Por favor, introduzca una ruta válida
@@ -76,7 +77,7 @@ menu1(){
     		    res=s
     		    mkdir $rutaD   	
     		    echo El directorio de destino ha sido creado
-    		    echo $(date) "[OK] - Creado el directorio ->" $rutaD >> $INFORMEPATH
+    		    echo $(date) "[OK] - Creado el directorio -> (gestiona-prac.sh)" $rutaD >> $INFORMEPATH
     		else
     		    echo Debe especificar un directorio para almacenar las prácticas
     		fi
@@ -107,7 +108,7 @@ menu1(){
 	#DESCOMENTAR LA SIGIUENTE LINEA:	
     	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root
     	
-    	echo $(date) "[OK] - Tarea añadida a cron ->" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
+    	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
     fi
     
@@ -128,10 +129,25 @@ menu2(){
     	echo presentes en el directorio $rutaAbs
     	echo -e "\n"
     	read -p "¿Está de acuerdo? (s/n) " resp
+    	#Comprimo los ficheros existentes en el directorio especificado
+    	
+    	#obtener el nombre del directorio final
+	nombreDir="${rutaABS%/}"
+	nombreDir="${nombreDir##*/}"
+    	
+    	cd $rutaABS/.. ; 
+    	sleep 1
+    	tar -cf $asignatura.tar $nombreDir
+    	sleep 1
+    	mv $asignatura.tar $rutaABS
+    	echo [OK] se ha empaquetado el directorio $rutaABS con las prácticas de la asignatura $asignatura 
+    	echo      en el directorio $rutaABS bajo el nombre $asignatura.tar
+    	
+    	#sintaxis: tar -cf nombreArchivo.tar comprimir1.sh comprimir2.sh
+    	
     else #Si el directorio no erxiste, informa del error y vuelve al menu principal
     	echo "[Error] El directorio especificado no existe"
-    	echo $(date) "[ERROR] - Directorio_Origen ->" No es posible empaquetar. El directorio de origen: $rutaAbs no existe >> $INFORMEPATH
-    	menu	
+    	echo $(date) "[ERROR] - Directorio_Origen -> (gestiona-prac.sh)" No es posible empaquetar. El directorio de origen: $rutaAbs no existe >> $INFORMEPATH	
     fi
     
     menu

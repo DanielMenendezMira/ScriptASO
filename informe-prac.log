@@ -1,10 +1,4 @@
-lun 12 dic 2022 16:22:16 CET [ERROR] - Directorio_Origen -> El directorio de origen: /home/dirErroneo no existe
-lun 12 dic 2022 16:22:58 CET [OK] - Creado el directorio -> /home/daniel/Escritorio/ASO/pracASO
-lun 12 dic 2022 16:23:09 CET [OK] - Tarea añadida a cron -> 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
-lun 12 dic 2022 16:26:18 CET [OK] - Creado el directorio -> /home/daniel/Escritorio/ASO/pracASO
-lun 12 dic 2022 16:26:27 CET [OK] - Tarea añadida a cron -> 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
-lun 12 dic 2022 16:44:53 CET [OK] - Tarea añadida a cron -> 52 16 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
-[OK] - Parámetros recibidos: -> rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
-lun 12 dic 2022 17:02:22 CET [OK] - Tarea añadida a cron -> 52 16 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
-lun 12 dic 2022 17:10:56 CET [OK] - Tarea añadida a cron -> 52 16 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
-[OK] - Parámetros recibidos: -> rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+lun 12 dic 2022 19:16:35 CET [OK] - Parámetros recibidos: -> rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+lun 12 dic 2022 19:16:35 CET [OK] - Práctica trasladada -> Alumno: dede Origen: /home/daniel/Escritorio/ASO/practicas/dede/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/dede.sh
+lun 12 dic 2022 19:16:35 CET [OK] - Práctica trasladada -> Alumno: luisa Origen: /home/daniel/Escritorio/ASO/practicas/luisa/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/luisa.sh
+lun 12 dic 2022 19:16:35 CET [OK] - Práctica trasladada -> Alumno: zapatilla Origen: /home/daniel/Escritorio/ASO/practicas/zapatilla/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/zapatilla.sh
