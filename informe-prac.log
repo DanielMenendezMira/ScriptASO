@@ -1,0 +1,9 @@
+[OK] 00 08 13 12 gestiona-prac.sh informe-prac.log pr6-BASH-2022.pdf recoge-prac.sh bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home /deed
+hola
+[OK] 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel /yyyy
+[OK] 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel /aaaaadddeeee
+[OK] 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel /yytttyyyy
+[OK] 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home /uuuuuuaaaa
+[OK] 00 08 13 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home /hhaa
+rutaOrigen: /hhhh
+rutaDestino: /ggggg

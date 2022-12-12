@@ -45,40 +45,41 @@ menu1(){
     echo Menú 1 - Programar recogida de prácticas
     echo -e "\n"
     read -p "Asignatura cuyas prácticas desea recoger: " asignatura
-    
+    #compruebo que el directorio existe
     while [ "$existe" = false ] 
     do
     	read -p "Ruta con las cuentas de los alumnos: " rutaO
     	if [ -d $rutaO ]
     	then
-    		echo El directorio existe
     		existe=true
     	else
-    		echo $(date) [Error] El directorio de origen: $1 no existe >> $INFORMEPATH
+    		echo $(date) [Error] El directorio de origen: $rutaO no existe >> $INFORMEPATH
     		echo -e "\n"
-    		echo [ERROR] El directorio de origen: $1 no existe
+    		echo [ERROR] El directorio de origen: $rutaO no existe
     		echo Por favor, introduzca una ruta válida
     		echo -e "\n"
     	fi
     done
-    
+    #una vez el directorio de origen es correcto sigo ejecutando
     read -p "Ruta para almacenar prácticas: " rutaD
     echo -e "\n"
     echo Se va a programar la recogida de las prácticas de $asignatura para
     echo mañana a las 8:00. Origen: $rutaO   Destino: $rutaD
     echo -e "\n"
-    read -p "¿Está de acuerdo? (s/n) " resp
-    menu
-}
-
-comprobarRuta(){ 
-    if [ -d $1 ]
+    read -p "¿Está de acuerdo? (s/n)" resp
+    
+    if [ "$resp" = s ]
     then
-    	echo El directorio existe
-    else
-    	echo [ERROR] El directorio de origen: $1 no existe
-    	echo Por favor, introduzca una ruta válida
+    	#añadimos una tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
+	day=$(date --date="next day" +%d)
+	month=$(date --date="next day" +%m)
+	
+	#REVISAR: sin permisos root no deja acceder al directorio /crontabs	
+    	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root
+    	echo [OK] 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
+
     fi
+    menu
 }
 
 menu2(){
