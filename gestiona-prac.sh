@@ -80,6 +80,8 @@ menu1(){
     		else
     		    echo Debe especificar un directorio para almacenar las prácticas
     		fi
+    	else
+    		res=s #si el directorio ya existe pongo res=s y sale del bucle
     	fi
     done
     
@@ -94,12 +96,19 @@ menu1(){
     then
     	#añadimos una tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
 	day=$(date --date="next day" +%d)
-	month=$(date --date="next day" +%m)
+	month=$(date --date="next day" +%m)	
 	
-	#REVISAR: sin permisos root no deja acceder al directorio /crontabs	
+	#REVISAR: sin permisos root no deja acceder al directorio /crontabs
+	
+	#BORRAR ESTAS DOS LINEAS, SON LAS PRUEBAS:	
+	#echo 13 17 12 12 "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root	
+	#echo 13 17 12 12 "* cd /home/daniel/Escritorio; touch funciona.txt" >>	/var/spool/cron/crontabs/root
+	
+	#DESCOMENTAR LA SIGIUENTE LINEA:	
     	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root
+    	
     	echo $(date) "[OK] - Tarea añadida a cron ->" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
-
+	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
     fi
     
     menu
@@ -111,15 +120,23 @@ menu2(){
     echo -e "\n"
     read -p "Asignatura cuyas prácticas desea empaquetar: " asignatura
     read -p "Ruta absoluta del directorio de prácticas: " rutaAbs
-    echo -e "\n" 
-    #Si hay algún problema (por ejemplo, el directorio a salvar no existe), 
-    #la herramienta presenta un mensaje de error en pantalla y en el fichero de incidencias, y vuelve al menú principal.
-    echo Se van a empaquetar las prácticas de la asignatura $asignatura 
-    echo presentes en el directorio $rutaAbs
-    echo -e "\n"
-    read -p "¿Está de acuerdo? (s/n) " resp
+    
+    if [ -d $rutaAbs ] #Si el directorio especificado existe, sigo ejecutando
+    then
+    	echo -e "\n" 
+    	echo Se van a empaquetar las prácticas de la asignatura $asignatura 
+    	echo presentes en el directorio $rutaAbs
+    	echo -e "\n"
+    	read -p "¿Está de acuerdo? (s/n) " resp
+    else #Si el directorio no erxiste, informa del error y vuelve al menu principal
+    	echo "[Error] El directorio especificado no existe"
+    	echo $(date) "[ERROR] - Directorio_Origen ->" No es posible empaquetar. El directorio de origen: $rutaAbs no existe >> $INFORMEPATH
+    	menu	
+    fi
+    
     menu
 }
+
 menu3(){
     echo -e "\n"
     echo Menú 3 - Obtener nombre y tamaño del fichero
