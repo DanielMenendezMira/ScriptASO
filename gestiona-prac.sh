@@ -61,7 +61,7 @@ menu1(){
     	fi
     done
     
-    #ahora compruebo si el directorio destino existe. Si no exite, lo creo
+    #ahora compruebo si el directorio destino existe. Si no exite, lo creo (al menos el usuario se cerciora de donde va a meter las cosas)
     res=n
     while [ "$res" = n ]
     	do
