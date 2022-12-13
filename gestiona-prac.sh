@@ -159,7 +159,7 @@ menu3(){
     echo -e "\n"
     echo La información obtenida de la asignatura empaquetada $asignatura es la siguiente:
     #Hago cosas que me ha explicado Javi
-    for i in $(find ~ -regextype posix-egrep -regex "/[A-Za-z0-9/]*$asignatura[0-9]{4}.tgz")
+    for i in $(find ~ -regextype posix-egrep -regex "/[A-Za-z0-9/]*$asignatura[0-9]{6}.tgz")
     do
     	tamaño=$(stat -c%s "$i")
     	echo -e "\t$i - $size"
