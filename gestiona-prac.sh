@@ -34,6 +34,7 @@ menu(){
             echo ***********************************************
             echo *             FIN DEL PROGRAMA                *
             echo ***********************************************
+            sleep 1
             exit
             ;;
     esac
@@ -109,6 +110,9 @@ menu1(){
     	
     	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
+    else
+        #si la respuesta es distinta se "s" se vuelve a ejecutar el menu1 de forma recursiva
+        menu1    
     fi
     
     menu
