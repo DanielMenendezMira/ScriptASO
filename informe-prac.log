@@ -2,3 +2,44 @@ lun 12 dic 2022 19:16:35 CET [OK] - Parámetros recibidos: -> rutaOrigen: /home/
 lun 12 dic 2022 19:16:35 CET [OK] - Práctica trasladada -> Alumno: dede Origen: /home/daniel/Escritorio/ASO/practicas/dede/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/dede.sh
 lun 12 dic 2022 19:16:35 CET [OK] - Práctica trasladada -> Alumno: luisa Origen: /home/daniel/Escritorio/ASO/practicas/luisa/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/luisa.sh
 lun 12 dic 2022 19:16:35 CET [OK] - Práctica trasladada -> Alumno: zapatilla Origen: /home/daniel/Escritorio/ASO/practicas/zapatilla/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/zapatilla.sh
+mar 13 dic 2022 15:56:02 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 00 08 14 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 15:58:40 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 00 08 14 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:00:01 CET [OK] - Parámetros recibidos: -> (recoge-prac.sh) rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:00:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: dede Origen: /home/daniel/Escritorio/ASO/practicas/dede/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/dede.sh
+mar 13 dic 2022 16:00:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: luisa Origen: /home/daniel/Escritorio/ASO/practicas/luisa/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/luisa.sh
+mar 13 dic 2022 16:00:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: zapatilla Origen: /home/daniel/Escritorio/ASO/practicas/zapatilla/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/zapatilla.sh
+mar 13 dic 2022 16:01:01 CET [OK] - Parámetros recibidos: -> (recoge-prac.sh) rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:01:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: dede Origen: /home/daniel/Escritorio/ASO/practicas/dede/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/dede.sh
+mar 13 dic 2022 16:01:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: luisa Origen: /home/daniel/Escritorio/ASO/practicas/luisa/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/luisa.sh
+mar 13 dic 2022 16:01:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: zapatilla Origen: /home/daniel/Escritorio/ASO/practicas/zapatilla/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/zapatilla.sh
+mar 13 dic 2022 16:04:02 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 00 08 14 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/pracASO /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:05:01 CET [OK] - Parámetros recibidos: -> (recoge-prac.sh) rutaOrigen: /home/daniel/Escritorio/ASO/pracASO | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:08:01 CET [OK] - Parámetros recibidos: -> (recoge-prac.sh) rutaOrigen: /home/daniel/Escritorio/ASO/pracASO | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:14:16 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 00 08 14 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:16:01 CET [OK] - Parámetros recibidos: -> (recoge-prac.sh) rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:16:01 CET [OK] - DENTRO FOR: -> (recoge-prac.sh) /home/daniel/Escritorio/ASO/practicas/dede /home/daniel/Escritorio/ASO/practicas
+mar 13 dic 2022 16:16:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: dede Origen: /home/daniel/Escritorio/ASO/practicas/dede/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/dede.sh
+mar 13 dic 2022 16:16:01 CET [OK] - DENTRO FOR: -> (recoge-prac.sh) /home/daniel/Escritorio/ASO/practicas/luisa /home/daniel/Escritorio/ASO/practicas
+mar 13 dic 2022 16:16:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: luisa Origen: /home/daniel/Escritorio/ASO/practicas/luisa/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/luisa.sh
+mar 13 dic 2022 16:16:01 CET [OK] - DENTRO FOR: -> (recoge-prac.sh) /home/daniel/Escritorio/ASO/practicas/zapatilla /home/daniel/Escritorio/ASO/practicas
+mar 13 dic 2022 16:16:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: zapatilla Origen: /home/daniel/Escritorio/ASO/practicas/zapatilla/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/zapatilla.sh
+mar 13 dic 2022 16:20:34 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 00 08 14 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:22:01 CET [OK] - Parámetros recibidos: -> (recoge-prac.sh) rutaOrigen: /home/daniel/Escritorio/ASO/practicas | rutaDestino: /home/daniel/Escritorio/ASO/pracASO
+mar 13 dic 2022 16:22:01 CET [OK] - DENTRO FOR: -> (recoge-prac.sh) /home/daniel/Escritorio/ASO/practicas/dede /home/daniel/Escritorio/ASO/practicas
+mar 13 dic 2022 16:22:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: dede Origen: /home/daniel/Escritorio/ASO/practicas/dede/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/dede.sh
+mar 13 dic 2022 16:22:01 CET [OK] - DENTRO FOR: -> (recoge-prac.sh) /home/daniel/Escritorio/ASO/practicas/luisa /home/daniel/Escritorio/ASO/practicas
+mar 13 dic 2022 16:22:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: luisa Origen: /home/daniel/Escritorio/ASO/practicas/luisa/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/luisa.sh
+mar 13 dic 2022 16:22:01 CET [OK] - DENTRO FOR: -> (recoge-prac.sh) /home/daniel/Escritorio/ASO/practicas/zapatilla /home/daniel/Escritorio/ASO/practicas
+mar 13 dic 2022 16:22:01 CET [OK] - Práctica trasladada -> (recoge-prac.sh) Alumno: zapatilla Origen: /home/daniel/Escritorio/ASO/practicas/zapatilla/prac.sh Destino: /home/daniel/Escritorio/ASO/pracASO/zapatilla.sh
+mar 13 dic 2022 16:33:24 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: . Nombre del ultimo directorio:
+mar 13 dic 2022 16:36:21 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: . Nombre del ultimo directorio:
+mar 13 dic 2022 16:40:38 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: /home/daniel/Escritorio/pracASO no existe
+mar 13 dic 2022 16:41:01 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASOOO. Directorio de Origen: . Nombre del ultimo directorio:
+mar 13 dic 2022 16:45:47 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: . Nombre del ultimo directorio:
+mar 13 dic 2022 16:47:09 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: . Nombre del ultimo directorio:
+mar 13 dic 2022 16:54:10 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
+mar 13 dic 2022 16:55:43 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
+mar 13 dic 2022 17:00:25 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
+mar 13 dic 2022 17:03:58 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
+mar 13 dic 2022 17:07:05 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe
+mar 13 dic 2022 17:49:45 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe

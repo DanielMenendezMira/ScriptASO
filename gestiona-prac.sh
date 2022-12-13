@@ -54,7 +54,7 @@ menu1(){
     	then
     		existe=true
     	else
-    		echo $(date) "[ERROR] - Directorio_Origen -> (gestiona-prac.sh)" El directorio de origen: $rutaO no existe >> $INFORMEPATH
+    		echo $(date) "[ERROR] - Directorio_Origen  -> (gestiona-prac.sh)" El directorio de origen: $rutaO no existe >> $INFORMEPATH
     		echo -e "\n"
     		echo [ERROR] El directorio de origen: $rutaO no existe
     		echo Por favor, introduzca una ruta válida
@@ -102,11 +102,11 @@ menu1(){
 	#REVISAR: sin permisos root no deja acceder al directorio /crontabs
 	
 	#BORRAR ESTAS DOS LINEAS, SON LAS PRUEBAS:	
-	#echo 13 17 12 12 "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root	
-	#echo 13 17 12 12 "* cd /home/daniel/Escritorio; touch funciona.txt" >>	/var/spool/cron/crontabs/root
+	echo 22 16 13 12 "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD | crontab -	
+	#echo 10 15 13 12 "* cd /home/daniel/Escritorio/ASO; touch funciona.txt" >>	/var/spool/cron/crontabs/root
 	
 	#DESCOMENTAR LA SIGIUENTE LINEA:	
-    	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> /var/spool/cron/crontabs/root
+    	#echo 57 15 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD | crontab -
     	
     	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
@@ -132,18 +132,17 @@ menu2(){
     	#Comprimo los ficheros existentes en el directorio especificado
     	
     	#obtener el nombre del directorio final
-	nombreDir="${rutaABS%/}"
+	nombreDir="${rutaAbs%/}"
 	nombreDir="${nombreDir##*/}"
-    	
-    	cd $rutaABS/.. ; 
+    	echo $(date) "[OK] - Parámetros recibidos: -> (gestiona-prac.sh)" Empaquetar asignatura $asignatura. Directorio de Origen: $rutaAbs. Nombre del ultimo directorio: $nombreDir >> $INFORMEPATH
+    	cd $rutaAbs/.. ; 
+    	#Comprimo la carpeta con las practicas de la asignatura para que al descomprimir no se desparramen
+    	tar cfz $rutaAbs/$asignatura-$(date +%y%m%d).tgz $nombreDir
     	sleep 1
-    	tar -cf $asignatura.tar $nombreDir
-    	sleep 1
-    	mv $asignatura.tar $rutaABS
-    	echo [OK] se ha empaquetado el directorio $rutaABS con las prácticas de la asignatura $asignatura 
-    	echo      en el directorio $rutaABS bajo el nombre $asignatura.tar
+    	echo [OK] se ha empaquetado el directorio $rutaAbs con las prácticas de la asignatura $asignatura 
+    	echo      en el directorio $rutaAbs bajo el nombre $asignatura.tgz
     	
-    	#sintaxis: tar -cf nombreArchivo.tar comprimir1.sh comprimir2.sh
+    	#sintaxis: tar cfz nombreArchivo.tar comprimir1.sh comprimir2.sh -> Esto empaqueta y comprime con gZip
     	
     else #Si el directorio no erxiste, informa del error y vuelve al menu principal
     	echo "[Error] El directorio especificado no existe"
