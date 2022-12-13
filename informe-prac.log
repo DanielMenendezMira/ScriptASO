@@ -43,3 +43,4 @@ mar 13 dic 2022 17:00:25 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh)
 mar 13 dic 2022 17:03:58 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
 mar 13 dic 2022 17:07:05 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe
 mar 13 dic 2022 17:49:45 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe
+mar 13 dic 2022 18:03:28 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe

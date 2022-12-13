@@ -22,19 +22,18 @@ menu(){
     
     case $option in 
         1)
-            echo opcion 1 
             menu1
             ;;
         2)
-            echo opcion 2
             menu2
             ;;
         3)
-            echo opcion 3
             menu3
             ;;
         4)
-            echo opcion 4
+            echo ***********************************************
+            echo *             FIN DEL PROGRAMA                *
+            echo ***********************************************
             exit
             ;;
     esac
@@ -146,7 +145,7 @@ menu2(){
     	
     else #Si el directorio no erxiste, informa del error y vuelve al menu principal
     	echo "[Error] El directorio especificado no existe"
-    	echo $(date) "[ERROR] - Directorio_Origen -> (gestiona-prac.sh)" No es posible empaquetar. El directorio de origen: $rutaAbs no existe >> $INFORMEPATH	
+    	echo $(date) "[ERROR] - Directorio_Origen -> (gestiona-prac.sh)" No es posible empaquetar. El directorio de origen: $rutaAbs no existe >> $INFORMEPATH
     fi
     
     menu
@@ -157,6 +156,16 @@ menu3(){
     echo Menú 3 - Obtener nombre y tamaño del fichero
     echo -e "\n"
     read -p "Asignatura sobre la que queremos información: " asignatura
+    echo -e "\n"
+    echo La información obtenida de la asignatura empaquetada $asignatura es la siguiente:
+    #Hago cosas que me ha explicado Javi
+    for i in $(find ~ -regextype posix-egrep -regex "/[A-Za-z0-9/]*$asignatura[0-9]{4}.tgz")
+    do
+    	tamaño=$(stat -c%s "$i")
+    	echo -e "\t$i - $size"
+    done
+    read -p "Pulse cualquier techa para volver al menú principal"
+    
     #SALIDA: El fichero generado es (por ejemplo): aso-221013.tgz y ocupa <n> bytes.
 }
 
