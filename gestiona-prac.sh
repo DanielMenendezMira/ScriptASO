@@ -166,9 +166,9 @@ menu3(){
     for i in $(find ~ -regextype posix-egrep -regex "/[A-Za-z0-9/]*$asignatura[0-9]{6}.tgz")
     do
     	tamaño=$(stat -c%s "$i")
-    	echo -e "\t$i - $size"
+    	echo -e "\t$i - $tamaño"
     done
-    read -p "Pulse cualquier techa para volver al menú principal"
+    read -p "Pulse cualquier tecla para volver al menú principal"
     
     #SALIDA: El fichero generado es (por ejemplo): aso-221013.tgz y ocupa <n> bytes.
 }
