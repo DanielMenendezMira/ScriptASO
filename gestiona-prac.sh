@@ -41,7 +41,7 @@ menu(){
 }
 
 menu1(){
-    existe=false
+    existe=false #para comprobar si los directorios existen
     echo -e "\n"
     echo Menú 1 - Programar recogida de prácticas
     echo -e "\n"
@@ -62,27 +62,28 @@ menu1(){
     	fi
     done
     
-    #ahora compruebo si el directorio destino existe. Si no exite, lo creo (al menos el usuario se cerciora de donde va a meter las cosas)
-    res=n
-    while [ "$res" = n ]
+    #ahora compruebo si el directorio destino existe. Si no exite, lo creo pero preguntando al usuario, ya que es posible que simplemente haya escrito mal la ruta y le evito empezar todo de nuevo
+    existe=false
+    while [ "$existe" == false ]
     	do
+    	
     	read -p "Ruta para almacenar prácticas: " rutaD
     	
-    	if [ ! -d $rutaD ]
+    	if [ ! -d $rutaD ] #si el directorio de destino no existe
     	then 
-    		read -p "El directorio de destino no exite. ¿Desea crearlo ahora? (s/n) " res
+    		read -p "El directorio de destino no exite. ¿Desea crearlo ahora? (s/n) " respuesta
     	
-    		if [ "$res" = s ]
+    		if [ "$respuesta" == s ] || [ "$respuesta" == S ]
     		then
-    		    res=s
-    		    mkdir $rutaD   	
-    		    echo El directorio de destino ha sido creado
+    		    mkdir $rutaD 
+    		    existe=true #para que en la proxima entrada al while salga directamente en lugar de dar otras 2 vueltas mas  	
+    		    echo El directorio de destino $rutaD ha sido creado
     		    echo $(date) "[OK] - Creado el directorio -> (gestiona-prac.sh)" $rutaD >> $INFORMEPATH
     		else
     		    echo Debe especificar un directorio para almacenar las prácticas
     		fi
     	else
-    		res=s #si el directorio ya existe pongo res=s y sale del bucle
+    		existe=true #si el directorio ya existe pongo existe=true y sale del bucle
     	fi
     done
     
@@ -92,22 +93,18 @@ menu1(){
     echo mañana a las 8:00. Origen: $rutaO   Destino: $rutaD
     echo -e "\n"
     read -p "¿Está de acuerdo? (s/n)" resp
-    #MODIFICAR ESTO pra evitar valores de $resp indeseados (distintos de s/n)
-    if [ "$resp" = s ]
+    
+    if [ "$resp" == s ] || [ "$resp" == S ]
     then
-    	#añadimos una tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
+    	#añadimos la tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
 	day=$(date --date="next day" +%d)
-	month=$(date --date="next day" +%m)	
-	
-	#REVISAR: sin permisos root no deja acceder al directorio /crontabs
-	
-	#BORRAR ESTAS DOS LINEAS, SON LAS PRUEBAS:	
-	echo 22 16 13 12 "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD | crontab -	
-	#echo 10 15 13 12 "* cd /home/daniel/Escritorio/ASO; touch funciona.txt" >>	/var/spool/cron/crontabs/root
-	
-	#DESCOMENTAR LA SIGIUENTE LINEA:	
-    	#echo 57 15 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD | crontab -
-    	
+	month=$(date --date="next day" +%m)
+	#----(idea de javi)con esto evitamos que se sobreescriba el cron cada vez que añadimos una nueva tarea
+	crontab -l | cat >> aux.txt
+	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> aux.txt
+	cat aux.txt | crontab -
+	rm aux.txt
+	#----
     	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
     else
@@ -132,21 +129,26 @@ menu2(){
     	echo presentes en el directorio $rutaAbs
     	echo -e "\n"
     	read -p "¿Está de acuerdo? (s/n) " resp
-    	#Comprimo los ficheros existentes en el directorio especificado
     	
-    	#obtener el nombre del directorio final
-	nombreDir="${rutaAbs%/}"
-	nombreDir="${nombreDir##*/}"
-    	echo $(date) "[OK] - Parámetros recibidos: -> (gestiona-prac.sh)" Empaquetar asignatura $asignatura. Directorio de Origen: $rutaAbs. Nombre del ultimo directorio: $nombreDir >> $INFORMEPATH
-    	cd $rutaAbs/.. ; 
-    	#Comprimo la carpeta con las practicas de la asignatura para que al descomprimir no se desparramen
-    	tar cfz $rutaAbs/$asignatura-$(date +%y%m%d).tgz $nombreDir
-    	sleep 1
-    	echo [OK] se ha empaquetado el directorio $rutaAbs con las prácticas de la asignatura $asignatura 
-    	echo      en el directorio $rutaAbs bajo el nombre $asignatura.tgz
-    	
-    	#sintaxis: tar cfz nombreArchivo.tar comprimir1.sh comprimir2.sh -> Esto empaqueta y comprime con gZip
-    	
+    	if [ "$resp" == s ] || [ "$resp" == S ] #Confirmacion
+    	then
+	    	#Comprimo los ficheros existentes en el directorio especificado:   	
+	    	
+	    	#1.-obtener el nombre del directorio final
+		nombreDir="${rutaAbs%/}"
+		nombreDir="${nombreDir##*/}"
+		#2.-Añado al .log los parametros recibidos para la compresion
+	    	echo $(date) "[OK] - Parámetros recibidos: -> (gestiona-prac.sh)" Empaquetar asignatura $asignatura. Directorio de Origen: $rutaAbs. Nombre del ultimo directorio: $nombreDir >> $INFORMEPATH
+	    	#3.-Me muevo al directorio superior
+	    	cd $rutaAbs/.. ; 
+	    	#4.-Comprimo la carpeta completa para que al descomprimir no se desparramen todas las practicas
+	    	tar cfz $rutaAbs/$asignatura-$(date +%y%m%d).tgz $nombreDir
+	    	sleep 1 #Espero 1 segundo por si tardase más de la cuenta
+	    	
+	    	echo $(date) "[OK] - Practica empaquetadas -> (gestiona-prac.sh)" Practicas de $asignatura empaquetadas en $rutaAbs >> $INFORMEPATH
+	    	echo [OK] se ha empaquetado el directorio $rutaAbs con las prácticas de la asignatura $asignatura 
+	    	echo      en el directorio $rutaAbs bajo el nombre $asignatura.tgz
+    	fi    	
     else #Si el directorio no erxiste, informa del error y vuelve al menu principal
     	echo "[Error] El directorio especificado no existe"
     	echo $(date) "[ERROR] - Directorio_Origen -> (gestiona-prac.sh)" No es posible empaquetar. El directorio de origen: $rutaAbs no existe >> $INFORMEPATH
