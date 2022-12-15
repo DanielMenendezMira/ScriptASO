@@ -44,3 +44,6 @@ mar 13 dic 2022 17:03:58 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh)
 mar 13 dic 2022 17:07:05 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe
 mar 13 dic 2022 17:49:45 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe
 mar 13 dic 2022 18:03:28 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) No es posible empaquetar. El directorio de origen: ~/Escritorio/ASO/pracASO no existe
+jue 15 dic 2022 20:35:16 CET [OK] - Creado el directorio -> (gestiona-prac.sh) /home/daniel/Escritorio/ASO/pracASO
+jue 15 dic 2022 20:35:28 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 37 20 16 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
+jue 15 dic 2022 20:38:18 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO

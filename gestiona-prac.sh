@@ -2,7 +2,7 @@
 
 
 INFORMEPATH=./informe-prac.log
-
+PWD=$(pwd)
 menu(){
 
     echo -e "\n";
@@ -10,6 +10,7 @@ menu(){
     echo Daniel Menéndez Mira;
     echo -e "\n";
     echo Gestión de Prácticas;
+    echo pwd:$PWD #BORRAR ESTA LINEA
     echo ----------------------;
     echo -e "\n";
     echo Menú;
@@ -76,7 +77,7 @@ menu1(){
     		if [ "$respuesta" == s ] || [ "$respuesta" == S ]
     		then
     		    mkdir $rutaD 
-    		    existe=true #para que en la proxima entrada al while salga directamente en lugar de dar otras 2 vueltas mas  	
+    		    existe=true #para que en la proxima comprobacin del while salga directamente en lugar de dar otras 2 vueltas mas  	
     		    echo El directorio de destino $rutaD ha sido creado
     		    echo $(date) "[OK] - Creado el directorio -> (gestiona-prac.sh)" $rutaD >> $INFORMEPATH
     		else
@@ -99,13 +100,13 @@ menu1(){
     	#añadimos la tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
 	day=$(date --date="next day" +%d)
 	month=$(date --date="next day" +%m)
-	#----(idea de javi)con esto evitamos que se sobreescriba el cron cada vez que añadimos una nueva tarea
-	crontab -l | cat >> aux.txt
-	echo 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> aux.txt
-	cat aux.txt | crontab -
-	rm aux.txt
+	#----(PROBAR ESTO) con esto evitamos que se sobreescriba el cron cada vez que añadimos una nueva tarea
+	crontab -l | cat >> aux.txt #creo un txt temporal donde copio lo que haya en en el cron
+	echo 37 20 15 12 "*" bash $PWD/recoge-prac.sh $rutaO $rutaD >> aux.txt #añado la tarea al txt
+	cat aux.txt | crontab - #meto todo de nuevo al cron
+	rm aux.txt #elimino el txt
 	#----
-    	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 00 08 $day $month "*" bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
+    	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 37 20 $day $month "*" bash $PWD/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
     else
         #si la respuesta es distinta se "s" se vuelve a ejecutar el menu1 de forma recursiva
@@ -167,8 +168,8 @@ menu3(){
     #Hago cosas que me ha explicado Javi
     for i in $(find ~ -regextype posix-egrep -regex "/[A-Za-z0-9/]*$asignatura[0-9]{6}.tgz")
     do
-    	tamaño=$(stat -c%s "$i")
-    	echo -e "\t$i - $tamaño"
+    	tamano=$(stat -c%s "$i")
+    	echo -e "\t$i - $tamano"
     done
     read -p "Pulse cualquier tecla para volver al menú principal"
     
