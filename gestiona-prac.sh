@@ -99,15 +99,16 @@ menu1(){
     if [ "$resp" == s ] || [ "$resp" == S ]
     then
     	#añadimos la tarea a cron para que ejecute "recoge-prac.sh" mañana a las 8:00 con los parametros recogidos 
-	day=$(date --date="next day" +%d)
-	month=$(date --date="next day" +%m)
-	#----(PROBAR ESTO) con esto evitamos que se sobreescriba el cron cada vez que añadimos una nueva tarea
+	day=$(date --date="next day" +%d) #obtengo el dia siguiente a la fecha actual
+	month=$(date --date="next day" +%m) #obtengo el mes correspondiente al dia siguiente
+	
+	#----con esto evitamos que se sobreescriba el cron cada vez que añadimos una nueva tarea con crontab -
 	crontab -l | cat >> aux.txt #creo un txt temporal donde copio lo que haya en en el cron
-	echo 37 20 15 12 "*" bash $PWD/recoge-prac.sh $rutaO $rutaD >> aux.txt #añado la tarea al txt
-	cat aux.txt | crontab - #meto todo de nuevo al cron
-	rm aux.txt #elimino el txt
+	echo 00 08 $day $month "*" bash $PWD/recoge-prac.sh $rutaO $rutaD >> aux.txt #añado la tarea al txt
+	cat aux.txt | crontab - #meto todo lo que hay en el txt temporal de nuevo al cron
+	rm aux.txt #elimino el txt temporal
 	#----
-    	echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 37 20 $day $month "*" bash $PWD/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
+    echo $(date) "[OK] - Tarea añadida a cron -> (gestiona-prac.sh)" 37 20 $day $month "*" bash $PWD/recoge-prac.sh $rutaO $rutaD >> $INFORMEPATH
 	echo Se ha programado correctamente la recogida de las prácticas de $asignatura para mañana $day/$month a las 08:00.
     else
         #si la respuesta es distinta se "s" se vuelve a ejecutar el menu1 de forma recursiva
@@ -146,7 +147,6 @@ menu2(){
 	    	cd $rutaAbs/.. ; 
 	    	#4.-Comprimo la carpeta completa para que al descomprimir no se desparramen todas las practicas
 	    	tar cfz $rutaAbs/$asignatura-$(date +%y%m%d).tgz $nombreDir
-	    	tar cfz $rutaAbs/$asignatura-251222.tgz $nombreDir
 	    	barraProgreso #lo hacemos bonito
 	    	
 	    	echo $(date) "[OK] - Practica empaquetadas -> (gestiona-prac.sh)" Practicas de $asignatura empaquetadas en $rutaAbs >> $INFORMEPATH

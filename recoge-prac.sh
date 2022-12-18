@@ -8,12 +8,11 @@ echo $(date) "[OK] - Parámetros recibidos -> (recoge-prac.sh)" rutaOrigen: $1 "
 
 for directorio in $(find $1 -mindepth 1 -maxdepth 1 -type d)
 do
-	echo $(date) "[OK] - DENTRO FOR: -> (recoge-prac.sh)" $directorio $1 >> $INFORMEPATH
 	#obtener el nombre del directorio final
-	nombre="${directorio%/}"
-	nombre="${nombre##*/}"
+	nombre="${directorio%/}" #separo la ruta por los campos /
+	nombre="${nombre##*/}" #me quedo con el campo tras la ultima / para aislar el nombre del fichero
 	
-	#movemos el fichero a la nueva ubicacion cambiandole el nombre
+	#movemos el fichero a la nueva ubicacion cambiandole el nombre por el del alumno
 	echo $(date) "[OK] - Práctica trasladada  -> (recoge-prac.sh)" Alumno: $nombre   Origen: $directorio/prac.sh   Destino: $2/$nombre.sh >> $INFORMEPATH
 	mv $directorio/prac.sh $2/$nombre.sh	
 done
