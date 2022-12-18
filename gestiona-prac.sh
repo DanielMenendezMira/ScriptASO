@@ -169,7 +169,7 @@ menu3(){
     for i in $(find ~ -regextype posix-egrep -regex "/[A-Za-z0-9/]*$asignatura-[0-9]{6}.tgz")
     do
     	tamano=$(stat -c%s "$i")
-    	echo -e "\t$i - $tamano"
+    	echo -e " El fichero generado es \t$i y ocupa $tamano bytes"
     done
     read -p "Pulse cualquier tecla para volver al menú principal"
     
