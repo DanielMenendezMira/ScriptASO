@@ -47,3 +47,7 @@ mar 13 dic 2022 18:03:28 CET [ERROR] - Directorio_Origen -> (gestiona-prac.sh) N
 jue 15 dic 2022 20:35:16 CET [OK] - Creado el directorio -> (gestiona-prac.sh) /home/daniel/Escritorio/ASO/pracASO
 jue 15 dic 2022 20:35:28 CET [OK] - Tarea añadida a cron -> (gestiona-prac.sh) 37 20 16 12 * bash /home/daniel/Escritorio/ASO/ScriptASO/recoge-prac.sh /home/daniel/Escritorio/ASO/practicas /home/daniel/Escritorio/ASO/pracASO
 jue 15 dic 2022 20:38:18 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
+dom 18 dic 2022 13:35:53 CET [OK] - Realizo busqueda .tgz -> (gestiona-prac.sh) El fichero generado es: /home/daniel/Escritorio/ASO/pracASO/ASO-221215.tgz y ocupa: 239 bytes
+dom 18 dic 2022 14:02:36 CET [OK] - Parámetros recibidos: -> (gestiona-prac.sh) Empaquetar asignatura ASO. Directorio de Origen: /home/daniel/Escritorio/ASO/pracASO. Nombre del ultimo directorio: pracASO
+dom 18 dic 2022 14:04:25 CET [OK] - Realizo busqueda .tgz -> (gestiona-prac.sh) El fichero generado es: /home/daniel/Escritorio/ASO/pracASO/ASO-251222.tgz y ocupa: 550 bytes
+dom 18 dic 2022 14:04:25 CET [OK] - Realizo busqueda .tgz -> (gestiona-prac.sh) El fichero generado es: /home/daniel/Escritorio/ASO/pracASO/ASO-221218.tgz y ocupa: 239 bytes
